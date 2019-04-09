@@ -1,0 +1,19 @@
+<div class="game">
+  <h2>Guess</h2>
+  <small>
+    You vs. Mechine
+  </small>
+  <div class="game-container">
+    <div class="game-box" [ngSwitch]="currentStatus">
+      <div *ngSwitchDefault>
+        <button mat-raised-button (click)="randomSelection()"> select random img </button>
+      </div>
+      <div *ngSwitchCase="Status.ShowImage">
+        <img [src]=imageUrl height="500px" width="500px" style="border-radius: 0.399rem;vertical-align: middle;">
+      </div>
+      <div *ngSwitchCase="Status.ShowProgress">
+
+      </div>
+    </div>
+  </div>
+</div>

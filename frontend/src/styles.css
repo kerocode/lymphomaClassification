@@ -21,6 +21,7 @@ body {
     "header header header header"
     "main main main main"
     "section-tf section-tf section-tf section-tf"
+    "model model model model"
     "footer footer footer footer";
 }
 
@@ -34,6 +35,10 @@ body {
 
 .my-section-tf {
   grid-area: section-tf
+}
+
+.my-model {
+  grid-area: model;
 }
 
 .grid {

@@ -8,13 +8,15 @@ import { MyMaterialModule } from './myMaterial.module';
 import { MyHeaderComponent } from './my-header/my-header.component';
 import { MyAboutComponent } from './my-about/my-about.component';
 import { MySectionTfComponent } from './my-section-tf/my-section-tf.component';
+import { MyGameComponent } from './my-game/my-game.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MyHeaderComponent,
     MyAboutComponent,
-    MySectionTfComponent
+    MySectionTfComponent,
+    MyGameComponent
   ],
   imports: [
     BrowserModule,
