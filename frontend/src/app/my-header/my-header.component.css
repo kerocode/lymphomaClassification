@@ -1,0 +1,15 @@
+.main-menu {
+  height: 60px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
+  background: linear-gradient(40deg, #45cafc, #303f9f) !important;
+  color: white;
+}
+
+#menu {
+  float: right;
+  padding: 10px;
+}
+
+#menu ul>li {
+  display: inline;
+}

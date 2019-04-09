@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+
+* {
+  margin: 0;
+  border: none;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "header header header header"
+    "main main main main"
+    "section-tf section-tf section-tf section-tf"
+    "footer footer footer footer";
+}
+
+.my-header {
+  grid-area: header;
+}
+
+.my-about {
+  grid-area: main;
+}
+
+.my-section-tf {
+  grid-area: section-tf
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 250px);
+  margin: 10px;
+  grid-column-gap: 5%;
+  grid-row-gap: 5%;
+}

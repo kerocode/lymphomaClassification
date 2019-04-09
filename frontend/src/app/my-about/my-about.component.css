@@ -1,0 +1,30 @@
+#lymphoma {
+
+  padding: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  align-items: center;
+  align-self: center;
+}
+
+#lymphoma .container {
+  max-width: 800px;
+}
+
+#lymphoma p {
+  text-align: center;
+  font-size: 1.275em;
+  line-height: 1.172em;
+}
+
+#lymphoma h2 {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+#quote h3 {
+  text-align: right;
+  color: #673ab7;
+}
