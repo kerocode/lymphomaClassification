@@ -9,6 +9,8 @@ import { MyHeaderComponent } from './my-header/my-header.component';
 import { MyAboutComponent } from './my-about/my-about.component';
 import { MySectionTfComponent } from './my-section-tf/my-section-tf.component';
 import { MyGameComponent } from './my-game/my-game.component';
+import { FormsModule } from '@angular/forms';
+import { PredictionService } from './prediction.service';
 
 @NgModule({
   declarations: [
@@ -21,10 +23,11 @@ import { MyGameComponent } from './my-game/my-game.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     MyMaterialModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [PredictionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

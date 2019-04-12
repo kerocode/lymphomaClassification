@@ -1,18 +1,84 @@
 <div class="game">
   <h2>Guess</h2>
   <small>
-    You vs. Mechine
+    You vs. Com
   </small>
   <div class="game-container">
     <div class="game-box" [ngSwitch]="currentStatus">
       <div *ngSwitchDefault>
-        <button mat-raised-button (click)="randomSelection()"> select random img </button>
+        <p>
+          Once upon a time, there was a tribe of special people called <span style="color:#c2185b; font-weight: 600;">
+            Computatrum </span> that were only talking on 0s and 1s, there were very
+          good in
+          adding,subtracting, and dividing numbers; although they were blind. but three years ago when wizard called
+          <span><a href="https://www.tensorflow.org/" target="_blank"
+              style="color:#ff9100;font-weight: 600;">tensorflow</a>
+            <img style="vertical-align: bottom;" src="assets/img/icons/wizard-96.png" width="30px" height="30px"></span>
+          offer to give sight them, if they have to use it in righteous purpose. <span
+            style="color:#c2185b; font-weight: 600;">
+            Computatrum &nbsp;</span>started to use this new power in studying images and learn difference between them
+          if you think you can callenage, one of Computatrum tribe, to see who can classify three types of Lymphoma.
+        </p>
+        <button mat-raised-button (click)="randomSelection()"> click here</button>
       </div>
       <div *ngSwitchCase="Status.ShowImage">
-        <img [src]=imageUrl height="500px" width="500px" style="border-radius: 0.399rem;vertical-align: middle;">
+        <p>score</p>
+        <div class="score">
+          <div class="user">
+            {{userScore}}
+          </div>
+          <div class="computer">
+            {{comScore}}
+          </div>
+        </div>
+        <img [src]=imageUrl class="img-selected">
+        <label>what type of Lymphoma cancer do you think this sample long to?</label>
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="userSelection" class="radio-group">
+          <mat-radio-button value=0 class="radio-button">FL</mat-radio-button>
+          <mat-radio-button value=1 class="radio-button">CLL</mat-radio-button>
+          <mat-radio-button value=2 class="radio-button">MCL</mat-radio-button>
+        </mat-radio-group>
+        <button mat-raised-button color="primary" (click)="submitAnswer()"> submit your answer</button>
       </div>
       <div *ngSwitchCase="Status.ShowProgress">
 
+      </div>
+      <div *ngSwitchCase="Status.ShowResult">
+        <div class="result">
+          <div class="actual-label">
+            <small>Actual Label</small><br>
+            {{imagePath[currentId]}}
+          </div>
+          <div class="predicted-label">
+            <div class="user-predict">
+              <small>User Prediction</small><br>
+              <img *ngIf="result===GameResult.User||result===GameResult.Draw" style="vertical-align: bottom;"
+                src="assets/img/icons/done-24px.svg" width="30px" height="30px">
+              {{imagePath[userSelection]}}
+            </div>
+            <div class="com-predict">
+              <small>Computatrum Prediction</small><br>
+              <img *ngIf="result===GameResult.Com||result===GameResult.Draw" style="vertical-align: bottom;"
+                src="assets/img/icons/done-24px.svg" width="30px" height="30px">
+              {{imagePath[comSelection]}}
+            </div>
+          </div>
+          <div class="result-score">
+            <p [ngSwitch]="result">
+              <span *ngSwitchCase="GameResult.Com">Sorry, Computatrum wins</span>
+              <span *ngSwitchCase="GameResult.User">Nice, you did it,you beat Computatrum</span>
+              <span *ngSwitchCase="GameResult.Draw">Awesome, both of you got it right</span>
+              <span *ngSwitchCase="GameResult.None">Awww, both of you got it Wrong</span>
+            </p>
+          </div>
+          <div style="margin-top: 10px;">
+            <button mat-raised-button color="accent" (click)="playAgain()">Play again </button>
+            <button mat-raised-button color="warn" (click)="quite()" style="margin-left: 10px;">Exit </button>
+          </div>
+        </div>
+      </div>
+      <div *ngSwitchCase="Status.ShowButton">
+        <button mat-raised-button (click)="randomSelection()"> select random img </button>
       </div>
     </div>
   </div>
