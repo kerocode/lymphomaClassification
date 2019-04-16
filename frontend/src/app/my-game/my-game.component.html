@@ -5,7 +5,7 @@
   </small>
   <div class="game-container">
     <div class="game-box" [ngSwitch]="currentStatus">
-      <div *ngSwitchDefault>
+      <div *ngSwitchDefault [@enterTrigger]="'fadeIn'">
         <p>
           Once upon a time, there was a tribe of special people called <span style="color:#c2185b; font-weight: 600;">
             Computatrum </span> that were only talking on 0s and 1s, there were very
@@ -19,9 +19,10 @@
             Computatrum &nbsp;</span>started to use this new power in studying images and learn difference between them
           if you think you can callenage, one of Computatrum tribe, to see who can classify three types of Lymphoma.
         </p>
-        <button mat-raised-button (click)="randomSelection()"> click here</button>
+        <button mat-raised-button (click)="randomSelection()"> Play</button>
       </div>
-      <div *ngSwitchCase="Status.ShowImage">
+      <div *ngSwitchCase="Status.ShowImage" [@enterTrigger]="'fadeIn'">
+
         <p>score</p>
         <div class="score">
           <div class="user">
@@ -31,19 +32,20 @@
             {{comScore}}
           </div>
         </div>
-        <img [src]=imageUrl class="img-selected">
+        <img [src]=imageUrl class="img-selected" #selectedImg>
         <label>what type of Lymphoma cancer do you think this sample long to?</label>
         <mat-radio-group aria-label="Select an option" [(ngModel)]="userSelection" class="radio-group">
           <mat-radio-button value=0 class="radio-button">FL</mat-radio-button>
           <mat-radio-button value=1 class="radio-button">CLL</mat-radio-button>
           <mat-radio-button value=2 class="radio-button">MCL</mat-radio-button>
         </mat-radio-group>
-        <button mat-raised-button color="primary" (click)="submitAnswer()"> submit your answer</button>
+        <button mat-raised-button color="primary" (click)="submitAnswer()" [disabled]="!userSelection"> submit your
+          answer</button>
       </div>
-      <div *ngSwitchCase="Status.ShowProgress">
+      <div *ngSwitchCase="Status.ShowProgress" [@enterTrigger]="'fadeIn'">
 
       </div>
-      <div *ngSwitchCase="Status.ShowResult">
+      <div *ngSwitchCase="Status.ShowResult" [@enterTrigger]="'fadeIn'">
         <div class="result">
           <div class="actual-label">
             <small>Actual Label</small><br>
@@ -77,9 +79,23 @@
           </div>
         </div>
       </div>
-      <div *ngSwitchCase="Status.ShowButton">
-        <button mat-raised-button (click)="randomSelection()"> select random img </button>
-      </div>
     </div>
   </div>
+</div>
+<div class="test">
+  <table>
+    <tr>
+      <th>image</th>
+      <th>actual</th>
+      <th>predict</th>
+    </tr>
+    <div>
+      <tr *ngFor="let n of numbers">
+        <td><img [src]="imgPath('MCL',n)" (click)="predictTest($event,n)" [id]="'CLL_'+n" width="100" height="100"></td>
+        <td>MCL</td>
+        <td>{{results[n]}}</td>
+      </tr>
+    </div>
+
+  </table>
 </div>
