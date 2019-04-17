@@ -21,8 +21,8 @@ export class PredictionService implements AfterViewInit {
 
   toTensor(image: HTMLImageElement) {
     let img = tf.browser.fromPixels(image, 3);
-    img = tf.image.resizeBilinear(img, [25, 25]);
-    const img4d = tf.reshape(img, [-1, 25, 25, 3])
+    img = tf.image.resizeBilinear(img, [40, 40]);
+    const img4d = tf.reshape(img, [-1, 40, 40, 3]);
     return tf.cast(img4d, 'float32');
   }
   async predict(image: HTMLImageElement): Promise<Array<number>> {
