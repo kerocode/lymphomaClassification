@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PicModalComponent } from '../pic-modal/pic-modal.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-my-section-tf',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MySectionTfComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
   }
-
+  openDialog(url): void {
+    if (!this.isMobileDevice()) {
+      let dialogRef = this.dialog.open(PicModalComponent, {
+        width: '75%',
+        height: '75%',
+        data: { url }
+      });
+    }
+  }
+  isMobileDevice() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+  };
 }

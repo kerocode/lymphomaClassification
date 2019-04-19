@@ -8,8 +8,8 @@ export class PredictionService implements AfterViewInit {
   ngAfterViewInit(): void {
     // this.loadModel().then(model => this.model = model);
   }
-  ngOnInit(): void {
-    //this.loadModel().then(model => this.model = model);
+  async ngOnInit() {
+    await this.loadModel();
   }
   model: tf.LayersModel;
   constructor() {
@@ -21,35 +21,28 @@ export class PredictionService implements AfterViewInit {
 
   toTensor(image: HTMLImageElement) {
     let img = tf.browser.fromPixels(image, 3);
-    img = tf.image.resizeBilinear(img, [40, 40]);
-    const img4d = tf.reshape(img, [-1, 40, 40, 3]);
-    return tf.cast(img4d, 'float32');
+    img = tf.cast(img, 'float32');
+    img = tf.image.resizeBilinear(img, [36, 36]);
+    img = img.div(255.0);
+    const img4d = tf.reshape(img, [-1, 36, 36, 3]);
+    return img4d;
   }
-  async predict(image: HTMLImageElement): Promise<Array<number>> {
-    return new Promise((resolve, reject) => {
-      try {
-        tf.tidy(() => {
-          const imgTensor = this.toTensor(image);
-          if (this.model === undefined) {
-            this.loadModel().then(model => this.model = model).then(() => {
-              // Make and format the predications
-              const output = this.model.predict(imgTensor) as any;
-              // Save predictions on the component
-              resolve(Array.from(output.dataSync()));
-            });
-          } else {
-            // Make and format the predications
-            const output = this.model.predict(imgTensor) as any;
-            // Save predictions on the component
-            resolve(Array.from(output.dataSync()));
-          }
-        });
-      } catch (e) {
-        reject(e);
-      }
+  async predict(image: HTMLImageElement) {
+    let predict = [];
+    if (this.model === undefined) {
+      await this.loadModel();
+    }
+    await tf.tidy(() => {
+      const imgTensor = this.toTensor(image);
+      // Make and format the predications
+      const output = this.model.predict(imgTensor) as any;
+      console.log(output.print());
+      // Save predictions on the component
+      predict = Array.from(output.dataSync());
     });
+    return predict;
   }
   async loadModel() {
-    return await tf.loadLayersModel('assets/ml/model.json');
+    this.model = await tf.loadLayersModel('assets/ml/model.json');
   }
 }

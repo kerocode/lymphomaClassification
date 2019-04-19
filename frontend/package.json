@@ -1,5 +1,5 @@
 {
-  "name": "tensorflow-chat-box",
+  "name": "Computatrum",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -8,6 +8,15 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
+  },
+  "browser": {
+    "http": false,
+    "https": false,
+    "net": false,
+    "path": false,
+    "stream": false,
+    "tls": false,
+    "crypto": false
   },
   "private": true,
   "dependencies": {

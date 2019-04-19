@@ -11,6 +11,7 @@ import { MySectionTfComponent } from './my-section-tf/my-section-tf.component';
 import { MyGameComponent } from './my-game/my-game.component';
 import { FormsModule } from '@angular/forms';
 import { PredictionService } from './prediction.service';
+import { PicModalComponent } from './pic-modal/pic-modal.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PredictionService } from './prediction.service';
     MyHeaderComponent,
     MyAboutComponent,
     MySectionTfComponent,
-    MyGameComponent
+    MyGameComponent,
+    PicModalComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,9 @@ import { PredictionService } from './prediction.service';
     FormsModule,
     MyMaterialModule,
     AppRoutingModule
+  ],
+  entryComponents: [
+    PicModalComponent
   ],
   providers: [PredictionService],
   bootstrap: [AppComponent]

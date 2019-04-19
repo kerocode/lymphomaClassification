@@ -20,6 +20,7 @@
           if you think you can callenage, one of Computatrum tribe, to see who can classify three types of Lymphoma.
         </p>
         <button mat-raised-button (click)="randomSelection()"> Play</button>
+
       </div>
       <div *ngSwitchCase="Status.ShowImage" [@enterTrigger]="'fadeIn'">
 
@@ -35,15 +36,16 @@
         <img [src]=imageUrl class="img-selected" #selectedImg>
         <label>what type of Lymphoma cancer do you think this sample long to?</label>
         <mat-radio-group aria-label="Select an option" [(ngModel)]="userSelection" class="radio-group">
-          <mat-radio-button value=0 class="radio-button">FL</mat-radio-button>
-          <mat-radio-button value=1 class="radio-button">CLL</mat-radio-button>
+          <mat-radio-button value=0 class="radio-button">CLL</mat-radio-button>
+          <mat-radio-button value=1 class="radio-button">FL</mat-radio-button>
           <mat-radio-button value=2 class="radio-button">MCL</mat-radio-button>
         </mat-radio-group>
         <button mat-raised-button color="primary" (click)="submitAnswer()" [disabled]="!userSelection"> submit your
           answer</button>
       </div>
       <div *ngSwitchCase="Status.ShowProgress" [@enterTrigger]="'fadeIn'">
-
+        <mat-spinner color="primary">
+        </mat-spinner>
       </div>
       <div *ngSwitchCase="Status.ShowResult" [@enterTrigger]="'fadeIn'">
         <div class="result">
@@ -82,7 +84,7 @@
     </div>
   </div>
 </div>
-<div class="test">
+<!-- <div class="test">
   <table>
     <tr>
       <th>image</th>
@@ -91,11 +93,12 @@
     </tr>
     <div>
       <tr *ngFor="let n of numbers">
-        <td><img [src]="imgPath('MCL',n)" (click)="predictTest($event,n)" [id]="'CLL_'+n" width="100" height="100"></td>
+        <td><img [src]="imgPath('MCL',n)" (click)="predictTest($event,n)" [id]="'FL_'+n" width="100" height="100"></td>
         <td>MCL</td>
-        <td>{{results[n]}}</td>
+        <td>{{imagePath[results[n]]}}</td>
       </tr>
     </div>
 
   </table>
 </div>
+-->

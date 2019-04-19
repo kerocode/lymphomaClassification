@@ -59,11 +59,12 @@ export class MyGameComponent implements OnInit {
   randomSelection(): void {
     this.currentId = this.predictionService.randomNumber(this.imagePath.length);
     const labelName = this.imagePath[this.currentId];
-    const imageName = this.predictionService.randomNumber(10) + 1;
+    const imageName = this.predictionService.randomNumber(15) + 1;
     this.imageUrl = `assets/img/${labelName}/${imageName}.jpeg`;
     this.currentStatus = Status.ShowImage;
   }
   submitAnswer() {
+    this.currentStatus = Status.ShowProgress;
     this.predictionService.predict(this.selectedImg.nativeElement).then(
       result => {
         this.comSelection = this.getLabelIndex(result);
