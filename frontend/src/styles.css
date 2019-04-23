@@ -23,6 +23,8 @@ body {
     "main main main main"
     "section-tf section-tf section-tf section-tf"
     "model model model model"
+    "how-to how-to how-to how-to"
+    "predict-sc predict-sc predict-sc predict-sc"
     "footer footer footer footer";
 }
 
@@ -44,4 +46,12 @@ body {
 
 .my-footer {
   grid-area: footer;
+}
+
+.my-how-to {
+  grid-area: how-to;
+}
+
+.my-predict-sc {
+  grid-area: predict-sc;
 }

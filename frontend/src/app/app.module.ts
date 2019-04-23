@@ -12,6 +12,8 @@ import { MyGameComponent } from './my-game/my-game.component';
 import { FormsModule } from '@angular/forms';
 import { PredictionService } from './prediction.service';
 import { PicModalComponent } from './pic-modal/pic-modal.component';
+import { HowToComponent } from './how-to/how-to.component';
+import { PredictSectionComponent } from './predict-section/predict-section.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { PicModalComponent } from './pic-modal/pic-modal.component';
     MyAboutComponent,
     MySectionTfComponent,
     MyGameComponent,
-    PicModalComponent
+    PicModalComponent,
+    HowToComponent,
+    PredictSectionComponent
   ],
   imports: [
     BrowserModule,

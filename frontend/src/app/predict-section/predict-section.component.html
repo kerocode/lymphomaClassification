@@ -1,0 +1,14 @@
+<div [ngSwitch]="currentPhase">
+  <div *ngSwitchDefault [@enterPhase]="'fadeIn'">
+    <button mat-raised-button color="primary" (click)="chooseImg()"> choose Image</button>
+    <input type="file" #imgInput (change)="onFileChange($event)" required style="display: none" />
+  </div>
+  <div *ngSwitchCase="Phase.showImg" [@enterPhase]="'fadeIn'">
+    <mat-spinner color="accent" *ngIf="Phase.showProgress===showProgress">
+    </mat-spinner>
+    <div [ngStyle]="{'display':showProgress?none:block}">
+      <img #choosenImg>
+      <button mat-raised-button color="primary" (click)="chooseImg()"> choose Image</button>
+    </div>
+  </div>
+</div>
