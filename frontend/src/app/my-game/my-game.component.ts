@@ -103,8 +103,7 @@ export class MyGameComponent implements OnInit {
     this.userSelection = undefined;
   }
   quite() {
-    this.userScore = 0;
-    this.comScore = 0;
+    this.resetScore();
     this.comSelection = 5;
     this.currentStatus = Status.ShowButton;
     this.userSelection = undefined;
@@ -113,17 +112,13 @@ export class MyGameComponent implements OnInit {
     return `assets/img/${labelName}/${n}.jpeg`;
   }
   predictTest(t, n) {
-    //const someimage = document.getElementById(n);
-    // const myimg: ElementRef<HTMLImageElement> = someimage.getElementsByTagName('img')[0];
     this.predictionService.predict(t.currentTarget).then(
       result => {
         this.results[n] = this.getLabelIndex(result);
       });
-
-    /*this.predictionService.predict(myimg.nativeElement).then(
-       result => {
-         this.comSelection = this.getLabelIndex(result);
-         this.gameLogic();
-       });*/
+  }
+  resetScore() {
+    this.userScore = 0;
+    this.comScore = 0;
   }
 }

@@ -19,12 +19,18 @@
             Computatrum &nbsp;</span>started to use this new power in studying images and learn difference between them
           if you think you can callenage, one of Computatrum tribe, to see who can classify three types of Lymphoma.
         </p>
-        <button mat-raised-button (click)="randomSelection()"> Play</button>
+        <button mat-raised-button (click)="randomSelection()" class="big-bttn"> Play now </button>
 
       </div>
       <div *ngSwitchCase="Status.ShowImage" [@enterTrigger]="'fadeIn'">
+        <div>
+          <button style="margin: 2px 1px 0px 0px;cursor: pointer;" (click)="resetScore()"><img
+              src="assets/img/icons/refresh-24px.svg" matTooltip="Reset score" width="24px" height="24px"></button>
+          <button style="margin: 2px 0px 0px 1px;cursor: pointer;" (click)="quite()"><img
+              src="assets/img/icons/clear-24px.svg" matTooltip="Exit Game" width="24px" height="24px"></button>
+          <p>score</p>
+        </div>
 
-        <p>score</p>
         <div class="score">
           <div class="user">
             {{userScore}}
