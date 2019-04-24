@@ -1,0 +1,24 @@
+.result-box {
+  border-radius: 0.175rem;
+  display: flex;
+  flex-direction: row;
+  align-content: space-between;
+  align-items: stretch;
+}
+
+.result-item {
+  flex: 1;
+  color: #fff;
+}
+
+.item-1 {
+  background: #E37222;
+}
+
+.item-2 {
+  background: #07889b;
+}
+
+.item-3 {
+  background: #66b9bf;
+}

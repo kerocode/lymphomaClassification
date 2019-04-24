@@ -2,6 +2,12 @@ import { Component, OnInit, ChangeDetectorRef, ViewChild, ElementRef } from '@an
 
 import { PredictionService } from '../prediction.service';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
+interface ImgFile {
+  name: string;
+  size: number;
+}
 enum Phase {
   showImg = 'SHOWIMG',
   showProgress = 'SHOWPROGRESS',
@@ -32,37 +38,51 @@ export class PredictSectionComponent implements OnInit {
   currentPhase;
   showProgress: string;
   Phase: typeof Phase = Phase;
+  imgFile: ImgFile;
   imageSrc: string;
   constructor(private cd: ChangeDetectorRef, private predictionService: PredictionService) { }
-
+  img = ['CLL', 'FL', 'MCL'];
+  currentResult = undefined;
   ngOnInit() {
 
   }
 
-  onFileChange(event) {
+  onFileClick(event) {
     this.currentPhase = Phase.showImg;
     this.showProgress = Phase.showProgress;
     const reader = new FileReader();
 
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
-      reader.readAsDataURL(file);
+      console.log(file);
+      // [this.imgFile.name, this.imgFile.size] = file;
       console.log(this.imgInput);
+      reader.readAsDataURL(file);
       reader.onload = () => {
         // const img = new Image(500, 500);
         this.choosenImg.nativeElement.src = reader.result as string;
+        this.showProgress = undefined;
         this.predictionService.predict(this.choosenImg.nativeElement).then(
           result => {
             console.log(result);
-            this.showProgress = undefined;
+            this.currentResult = result;
           });
-        // need to run CD since file load runs outside of zone
-        this.cd.markForCheck();
       };
+      reader.onerror = (e) => console.log(e);
     }
+  }
+  touchInput($event) {
+    /*  const [file] = $event.target.files;
+      if (file.name === this.imgFile.name && file.size === this.imgFile.size) {
+        this.showProgress = undefined;
+      }*/
   }
   onSubmit() { }
   chooseImg() {
     this.imgInput.nativeElement.click();
+  }
+  round(value: number) {
+    const num = value * 100;
+    return ` ${num.toFixed(4)} %`;
   }
 }

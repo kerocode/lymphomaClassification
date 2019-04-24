@@ -1,11 +1,14 @@
 import {
     MatButtonModule, MatCheckboxModule, MatTooltipModule, MatRadioModule, MatDialogModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatProgressBarModule
 } from '@angular/material';
 import { NgModule } from '@angular/core';
 
 @NgModule({
-    imports: [MatButtonModule, MatCheckboxModule, MatTooltipModule, MatRadioModule, MatDialogModule, MatProgressSpinnerModule],
-    exports: [MatButtonModule, MatCheckboxModule, MatTooltipModule, MatRadioModule, MatDialogModule, MatProgressSpinnerModule],
+    imports: [MatButtonModule, MatCheckboxModule, MatTooltipModule, MatRadioModule, MatDialogModule, MatProgressSpinnerModule,
+        MatProgressBarModule],
+    exports: [MatButtonModule, MatCheckboxModule, MatTooltipModule, MatRadioModule, MatDialogModule,
+        MatProgressSpinnerModule, MatProgressBarModule],
 })
 export class MyMaterialModule { }

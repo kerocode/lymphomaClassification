@@ -49,7 +49,7 @@
         <button mat-raised-button color="primary" (click)="submitAnswer()" [disabled]="!userSelection"> submit your
           answer</button>
       </div>
-      <div *ngSwitchCase="Status.ShowProgress" [@enterTrigger]="'fadeIn'">
+      <div *ngSwitchCase="Status.ShowProgress" [@enterTrigger]="'fadeIn'" class="progress-box">
         <mat-spinner color="primary">
         </mat-spinner>
       </div>

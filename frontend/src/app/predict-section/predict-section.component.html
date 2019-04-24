@@ -1,14 +1,42 @@
-<div [ngSwitch]="currentPhase">
-  <div *ngSwitchDefault [@enterPhase]="'fadeIn'">
-    <button mat-raised-button color="primary" (click)="chooseImg()"> choose Image</button>
-    <input type="file" #imgInput (change)="onFileChange($event)" required style="display: none" />
-  </div>
-  <div *ngSwitchCase="Phase.showImg" [@enterPhase]="'fadeIn'">
-    <mat-spinner color="accent" *ngIf="Phase.showProgress===showProgress">
-    </mat-spinner>
-    <div [ngStyle]="{'display':showProgress?none:block}">
-      <img #choosenImg>
-      <button mat-raised-button color="primary" (click)="chooseImg()"> choose Image</button>
+<div class="game">
+
+  <div class="game-container">
+    <div [ngSwitch]="currentPhase">
+      <div *ngSwitchDefault [@enterPhase]="'fadeIn'">
+        <p>choose image, to predict what type of Lymphoma cancer it is.<br> <b>Note: </b>
+          this model has been trained to only recognize these three types of Lymphoma cancer </p>
+        <button mat-raised-button color="primary" (click)="chooseImg()"> choose Image</button>
+      </div>
+      <div *ngSwitchCase="Phase.showImg" [@enterPhase]="'fadeIn'">
+        <!--<mat-spinner color="accent" *ngIf="Phase.showProgress===showProgress">
+        </mat-spinner>-->
+        <div [ngStyle]="{'display':showProgress?none:block}">
+          <img #choosenImg class="img-selected">
+          <div *ngIf="!currentResult else elseBlock">
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+          </div>
+          <ng-template #elseBlock>
+            <div class="result-box">
+              <div class="result-item item-1">
+                <p>CLL</p>
+                <p>{{round(currentResult[0])}}</p>
+              </div>
+              <div class="result-item item-2">
+                <p>FL</p>
+                <p>{{round(currentResult[1])}}</p>
+              </div>
+              <div class="result-item item-3">
+                <p>MCL</p>
+                <p>{{round(currentResult[2])}}</p>
+              </div>
+            </div>
+          </ng-template>
+          <button mat-raised-button color="primary" (click)="chooseImg()" style="margin-top: 10px;"> choose
+            Image</button>
+        </div>
+      </div>
     </div>
+    <input type="file" #imgInput (change)="onFileClick($event)" (input)="touchInput($event)" accept="image/jpeg"
+      required style="display: none" />
   </div>
 </div>
