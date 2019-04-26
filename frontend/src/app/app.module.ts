@@ -14,6 +14,7 @@ import { PredictionService } from './prediction.service';
 import { PicModalComponent } from './pic-modal/pic-modal.component';
 import { HowToComponent } from './how-to/how-to.component';
 import { PredictSectionComponent } from './predict-section/predict-section.component';
+import { MyFooterComponent } from './my-footer/my-footer.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PredictSectionComponent } from './predict-section/predict-section.compo
     MyGameComponent,
     PicModalComponent,
     HowToComponent,
-    PredictSectionComponent
+    PredictSectionComponent,
+    MyFooterComponent
   ],
   imports: [
     BrowserModule,

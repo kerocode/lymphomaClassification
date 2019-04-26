@@ -8,8 +8,6 @@
         <button mat-raised-button color="primary" (click)="chooseImg()"> choose Image</button>
       </div>
       <div *ngSwitchCase="Phase.showImg" [@enterPhase]="'fadeIn'">
-        <!--<mat-spinner color="accent" *ngIf="Phase.showProgress===showProgress">
-        </mat-spinner>-->
         <div [ngStyle]="{'display':showProgress?none:block}">
           <img #choosenImg class="img-selected">
           <div *ngIf="!currentResult else elseBlock">

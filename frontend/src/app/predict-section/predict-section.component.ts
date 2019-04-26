@@ -83,6 +83,6 @@ export class PredictSectionComponent implements OnInit {
   }
   round(value: number) {
     const num = value * 100;
-    return ` ${num.toFixed(4)} %`;
+    return ` ${num.toFixed(3)} %`;
   }
 }
