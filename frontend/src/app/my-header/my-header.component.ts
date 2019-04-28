@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ScrollToService } from '../scroll-to.service';
 
 @Component({
   selector: 'app-my-header',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyHeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(private scrollService: ScrollToService) {
+  }
 
   ngOnInit() {
   }
-
+  scrollTo(el: string) {
+    this.scrollService.setNextvalue(el);
+  }
 }

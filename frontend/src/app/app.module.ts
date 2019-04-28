@@ -15,6 +15,7 @@ import { PicModalComponent } from './pic-modal/pic-modal.component';
 import { HowToComponent } from './how-to/how-to.component';
 import { PredictSectionComponent } from './predict-section/predict-section.component';
 import { MyFooterComponent } from './my-footer/my-footer.component';
+import { ScrollToService } from './scroll-to.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { MyFooterComponent } from './my-footer/my-footer.component';
   entryComponents: [
     PicModalComponent
   ],
-  providers: [PredictionService],
+  providers: [PredictionService, ScrollToService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
