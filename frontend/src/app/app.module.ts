@@ -33,8 +33,7 @@ import { ScrollToService } from './scroll-to.service';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    MyMaterialModule,
-    AppRoutingModule
+    MyMaterialModule
   ],
   entryComponents: [
     PicModalComponent
