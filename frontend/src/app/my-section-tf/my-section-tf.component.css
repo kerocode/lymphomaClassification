@@ -8,7 +8,7 @@
 
 .grid {
   display: grid;
-  height: 60vw;
+  height: 65vw;
   grid-template-columns: 1fr 1fr 1fr;
   margin: 20px;
   grid-column-gap: 2%;
@@ -83,7 +83,7 @@
   }
 }
 
-@media only screen and (max-width : 420px) {
+@media only screen and (max-width : 520px) {
   .grid {
     display: grid;
     grid-template-columns: 1fr;
