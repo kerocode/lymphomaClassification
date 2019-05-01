@@ -3,7 +3,7 @@
   <small>
     You vs. Com
   </small>
-  <div class="game-container">
+  <div class="game-container" style="height: 710px;">
     <div class="game-box" [ngSwitch]="currentStatus">
       <div *ngSwitchDefault [@enterTrigger]="'fadeIn'">
         <p>
@@ -29,6 +29,8 @@
               src="assets/img/icons/refresh-24px.svg" matTooltip="Reset score" width="24px" height="24px"></button>
           <button style="margin: 2px 0px 0px 1px;cursor: pointer;" (click)="quite()"><img
               src="assets/img/icons/clear-24px.svg" matTooltip="Exit Game" width="24px" height="24px"></button>
+          <button style="margin: 2px 0px 0px 1px;cursor: pointer;" (click)="changeVolume()"><img [src]=volumeUrl
+              matTooltip="Turn off sound" width="24px" height="24px"></button>
           <p>score</p>
         </div>
 
@@ -90,4 +92,6 @@
       </div>
     </div>
   </div>
+  <audio preload="auto" #winnerSound src="assets/sounds/winner.ogg"></audio>
+  <audio preload="auto" #losserSound src="assets/sounds/losser.wav"></audio>
 </div>

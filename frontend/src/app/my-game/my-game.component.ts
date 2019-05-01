@@ -46,9 +46,12 @@ export class MyGameComponent implements OnInit {
   GameResult: typeof GameResult = GameResult;
   result: number;
   imageUrl: string;
+  volumeUrl: string = 'assets/img/icons/volume_up-24px.svg';
+  volumeUp = true;
   numbers = Array.from({ length: 10 }, (v, i) => i + 1);
   results = Array.from({ length: 10 }, (v, i) => i + 1);
-  @ViewChildren('testObj') testObj: QueryList<HTMLImageElement>;
+  @ViewChild('winnerSound') winnerSound: ElementRef<HTMLAudioElement>;
+  @ViewChild('losserSound') losserSound: ElementRef<HTMLAudioElement>;
   @ViewChild('selectedImg') selectedImg: ElementRef<HTMLImageElement>;
 
   constructor(private predictionService: PredictionService) { }
@@ -62,6 +65,15 @@ export class MyGameComponent implements OnInit {
     const imageName = this.predictionService.randomNumber(15) + 1;
     this.imageUrl = `assets/img/${labelName}/${imageName}.jpeg`;
     this.currentStatus = Status.ShowImage;
+  }
+  changeVolume() {
+    if (this.volumeUp) {
+      this.volumeUp = false;
+      this.volumeUrl = 'assets/img/icons/volume_off-24px.svg';
+    } else {
+      this.volumeUp = true;
+      this.volumeUrl = 'assets/img/icons/volume_up-24px.svg';
+    }
   }
   submitAnswer() {
     this.currentStatus = Status.ShowProgress;
@@ -84,15 +96,28 @@ export class MyGameComponent implements OnInit {
   }
   private gameLogic() {
     if (Number(this.userSelection) === this.currentId && this.comSelection === this.currentId) {
+      if (this.volumeUp) {
+        this.winnerSound.nativeElement.play();
+      }
+
       this.result = GameResult.Draw;
     } else if (Number(this.userSelection) === this.currentId) {
+      if (this.volumeUp) {
+        this.winnerSound.nativeElement.play();
+      }
       this.userScore++;
       this.result = GameResult.User;
     } else if (this.comSelection === this.currentId) {
       this.comScore++;
+      if (this.volumeUp) {
+        this.losserSound.nativeElement.play();
+      }
       this.result = GameResult.Com;
     } else {
       this.result = GameResult.None;
+      if (this.volumeUp) {
+        this.losserSound.nativeElement.play();
+      }
     }
     this.currentStatus = Status.ShowResult;
   }
