@@ -44,7 +44,6 @@ export class PredictSectionComponent implements OnInit {
   img = ['CLL', 'FL', 'MCL'];
   currentResult = undefined;
   ngOnInit() {
-
   }
 
   onFileClick(event) {
@@ -61,12 +60,14 @@ export class PredictSectionComponent implements OnInit {
       reader.onload = () => {
         // const img = new Image(500, 500);
         this.choosenImg.nativeElement.src = reader.result as string;
-        this.showProgress = undefined;
-        this.predictionService.predict(this.choosenImg.nativeElement).then(
-          result => {
-            console.log(result);
-            this.currentResult = result;
-          });
+        this.choosenImg.nativeElement.onload = () => {
+          this.showProgress = undefined;
+          this.predictionService.predict(this.choosenImg.nativeElement).then(
+            result => {
+              console.log(result);
+              this.currentResult = result;
+            });
+        }
       };
       reader.onerror = (e) => console.log(e);
     }

@@ -4,17 +4,13 @@ import * as tf from '@tensorflow/tfjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PredictionService implements AfterViewInit {
-  ngAfterViewInit(): void {
-    // this.loadModel().then(model => this.model = model);
-  }
+export class PredictionService {
+  model: tf.LayersModel;
   async ngOnInit() {
     await this.loadModel();
   }
-  model: tf.LayersModel;
-  constructor() {
-    // this.loadModel().then(model => this.model = model);
-  }
+
+  constructor() { }
   randomNumber(num: number): number {
     return Math.floor(Math.random() * num);
   }
